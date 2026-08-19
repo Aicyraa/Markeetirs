@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-     "build": "tsc && tsc-alias && copy",
+     "build": "tsc -p tsconfig.build.json && tsc-alias && copy",
      "dev": "nodemon --exec tsx src/app.ts",
      "copy": "cpy 'views/**/*' 'dist/views'" 
   },

@@ -1,0 +1,13 @@
+{
+   "extends": "./tsconfig.base.json",
+   "compilerOptions": {
+      // File Layout
+      "rootDir": "./src",
+      "outDir": "./dist",
+      "paths": {},
+
+      // Emit runnable JS, rewriting .ts imports to .js in the output
+      "rewriteRelativeImportExtensions": true
+   },
+   "include": ["src"]
+}
