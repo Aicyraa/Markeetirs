@@ -1,27 +1,30 @@
 import type { Request, Response } from 'express'
-import type { QueryParams } from '../types.ts'
-import { validationResult } from 'express-validator'
-import { fetchAllItems, fetchItem } from '../db/query.ts'
+import type { Categories, QueryParams } from '../types.ts'
+import { fetchAllCategories, fetchAllItems, fetchItem } from '../db/query.ts'
 
 async function getAllItems(req: Request, res: Response) {
    const result = await fetchAllItems()
-   res.render('index', { foodCount: result.rowCount, foods: result.rows, search_value: '' })
+   res.render('index', { itemCount: result.rowCount, items: result.rows, search_value: '' })
 }
 
 async function getItem(req: Request, res: Response) {
    const query: QueryParams = req.query
 
    if (!query.value) {
-      // alert('Invalid searc!') // replace this with proper error modal
       res.status(400).redirect('/')
    }
 
    const result = await fetchItem(query?.value as string)
    res.render('index', {
-      foodCount: result.rowCount,
-      foods: result.rows,
+      itemCount: result.rowCount,
+      items: result.rows,
       search_value: query.value,
    })
 }
 
-export { getAllItems, getItem }
+async function getAllCategories(req: Request, res: Response) {
+   const categories = await fetchAllCategories()
+   res.render('categories', { categories: categories.rows })
+}
+
+export { getAllItems, getItem, getAllCategories }
