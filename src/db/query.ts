@@ -1,7 +1,8 @@
-import { matchedData } from 'express-validator'
+import type { Categories, Item } from '../types.ts'
+import type { QueryResult } from 'pg'
 import pool from './pool.ts'
 
-async function fetchAllItems() {
+async function fetchAllItems(): Promise<QueryResult<Item>> {
    return await pool.query(
       `
          SELECT items.name as item, price, stock, cost, unit, status, categories.name as category FROM items
@@ -11,7 +12,7 @@ async function fetchAllItems() {
    )
 }
 
-async function fetchItem(name: string) {
+async function fetchItem(name: string): Promise<QueryResult<Item>> {
    return await pool.query(
       `
          SELECT items.name as item, price, stock, cost, unit, status, categories.name as category FROM items
@@ -24,4 +25,13 @@ async function fetchItem(name: string) {
    )
 }
 
-export { fetchAllItems, fetchItem }
+async function fetchAllCategories(): Promise<QueryResult<Categories>> {
+   // Reconsider the query
+   return await pool.query(
+      `
+         SELECT name, description FROM categories;
+      `,
+   )
+}
+
+export { fetchAllItems, fetchItem, fetchAllCategories }
