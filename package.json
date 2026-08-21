@@ -5,9 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-     "build": "tsc -p tsconfig.build.json && tsc-alias && copy",
-     "dev": "nodemon --exec tsx src/app.ts",
-     "copy": "cpy 'views/**/*' 'dist/views'" 
+    "build": "tsc -p tsconfig.build.json && tsc-alias && copy",
+    "dev": "nodemon --exec tsx src/app.ts",
+    "copy": "cpy 'views/**/*' 'dist/views'"
   },
   "repository": {
     "type": "git",
@@ -28,14 +28,18 @@
     "nodemon": "^3.1.14",
     "tsc-alias": "^1.9.1",
     "tsx": "^4.23.12",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
   },
   "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^4.22.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.3.2",
     "nanoid": "^6.0.1",
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "tailwindcss": "^4.3.3"
   }
 }
