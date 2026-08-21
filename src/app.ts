@@ -13,17 +13,18 @@ app.set('view engine', 'ejs')
 
 app.use(express.json())
 app.use(express.urlencoded())
+app.use(express.static(path.join(import.meta.dirname, 'public')))
 
 app.use('/', itemsRouter)
 
 app.use((req: Request, res: Response, next: NextFunction) => {
    console.log(`Request made to ${req.url}`)
-   console.dir(req)
+   // console.dir(req)
 })
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
    // Replace this
-   res.status(500).send('internal server error.')
+   res.status(500).send(err.message)
 })
 
 app.listen(port, err => {

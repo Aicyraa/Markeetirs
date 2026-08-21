@@ -3,9 +3,46 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/output.css">
       <title>Document</title>
    </head>
    <body>
-      <h1> <%= foodCount %> </h1>
+      <%- include('navigation', {}) %>
+      <div class="main">
+         <div class="table-header">
+            <span > Available Products</span>
+            <div>
+               <input type="search" name="value" id="value" value="<%= search_value %>">
+               <button type="button"> + </button>
+            </div>
+         </div>
+         <div class="table">
+            <% foods.forEach(food => { %>
+               <%- include('food', { food }) %>
+            <% }) %>
+         </div>
+      </div>
    </body>
 </html>
+
+<script>
+   function _debounce() {
+      let timerID;
+      return (e) => {
+         if (timerID) clearTimeout(timerID)
+         timerID = setTimeout(() => {            
+            setTimeout(() => {
+               if (search_input.value.trim()) {
+                  window.location.assign(`http://localhost:3000`) 
+               }               
+            }, 1500)
+            window.location.assign(`http://localhost:3000/search?value=${e.target.value}`) 
+         }, 1000)
+      }
+   }
+
+   const debounce = _debounce()
+   const search_input = document.querySelector('#value')
+   search_input.addEventListener('input', debounce)
+
+</script>

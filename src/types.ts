@@ -8,4 +8,8 @@ interface Item {
    category: string
 }
 
-export type { Item }
+interface QueryParams {
+   value?: string
+} 
+
+export type { Item, QueryParams }
