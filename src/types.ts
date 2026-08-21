@@ -1,5 +1,5 @@
 interface Item {
-   name: string
+   item: string
    price: number
    stock: number
    cost: number
@@ -8,8 +8,14 @@ interface Item {
    category: string
 }
 
+interface Categories {
+   name: string
+   description: string
+}
+
 interface QueryParams {
    value?: string
-} 
+}
 
-export type { Item, QueryParams }
+
+export type { Item, QueryParams, Categories }
