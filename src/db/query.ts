@@ -28,10 +28,20 @@ async function fetchItem(name: string): Promise<QueryResult<Item>> {
 }
 
 async function fetchAllCategories(): Promise<QueryResult<Categories>> {
-   // Reconsider the query
+   // Profit and Profit_Status
    return await pool.query(
       `
-         SELECT name, description FROM categories;
+         SELECT categories.name AS category, description, 
+            COUNT(*) as total_item,
+            ((SUM(total_stock) * SUM(price)) - (SUM(total_stock) * SUM(cost))) as total_profit,
+            CASE
+               WHEN ((SUM(total_stock) * SUM(price)) - (SUM(total_stock) * SUM(cost))) > (SUM(total_stock) * SUM(cost)) THEN 'yes'
+               ELSE 'no' 
+            END AS is_profitable
+         FROM categories
+         JOIN items
+         ON categories.category_id = items.category_id
+         GROUP BY categories.name, description
       `,
    )
 }
