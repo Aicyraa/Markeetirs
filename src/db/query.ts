@@ -20,7 +20,7 @@ async function fetchItem(name: string): Promise<QueryResult<Item>> {
          SELECT items.name as item, price, stock, cost, unit, status, categories.name as category FROM items
          LEFT JOIN categories
          ON items.category_id = categories.category_id 
-         WHERE items.name ILIKE '%' || $1 || '%' 
+         WHERE items.name ILIKE $1 || '%' 
          ORDER BY items.name
       `,
       [name],

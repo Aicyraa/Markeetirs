@@ -10,15 +10,15 @@ async function getAllItems(req: Request, res: Response) {
 async function getItem(req: Request, res: Response) {
    const query: QueryParams = req.query
 
-   if (!query.value) {
+   if (!query.name) {
       res.status(400).redirect('/')
    }
 
-   const result = await fetchItem(query?.value as string)
+   const result = await fetchItem(query?.name as string)
    res.render('index', {
       itemCount: result.rowCount,
       items: result.rows,
-      search_value: query.value,
+      search_value: query.name,
    })
 }
 

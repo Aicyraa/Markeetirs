@@ -17,7 +17,7 @@ interface Categories {
 }
 
 interface QueryParams {
-   value?: string
+   name?: string
 }
 
 export type { Item, QueryParams, Categories }

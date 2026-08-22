@@ -12,7 +12,7 @@
          <div class="table-header">
             <span > Available Products</span>
             <div>
-               <input type="search" name="value" id="value" value="<%= search_value %>">
+               <input type="search" name="name" id="name" value="<%= search_value %>">
                <button type="button"> + </button>
             </div>
          </div>
@@ -36,12 +36,12 @@
                   window.location.assign(`http://localhost:3000`) 
                }               
             }, 1500)
-            window.location.assign(`http://localhost:3000/search?value=${e.target.value}`) 
+            window.location.assign(`http://localhost:3000/search?name=${e.target.value}`) 
          }, 1000)
       }
    }
 
    const debounce = _debounce()
-   const search_input = document.querySelector('#value')
+   const search_input = document.querySelector('#name')
    search_input.addEventListener('input', debounce)
 </script>
