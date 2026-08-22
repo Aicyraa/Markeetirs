@@ -5,11 +5,17 @@
    </div>
    <div>
       <div>
-         <img src="" alt="" width="30" height="30" />
-         <span> <%= totalRevenue %> </span>
+         <% if (category.is_profitable === 'yes') { %>
+            <!-- Good -->
+            <img src="/trade-up-stroke-rounded.svg" alt="" width="30" height="30" />
+         <% } else { %>
+            <!-- BAD -->
+            <img src="/trade-down-stroke-rounded.svg" alt="" width="30" height="30" />
+         <% } %>
+            <span> <%= category.total_profit %> </span>
       </div>
       <div>
-         <span> <%= totalItem %> </span>
+         <span> <%= category.total_item %> </span>
       </div>
    </div>
 </div>
